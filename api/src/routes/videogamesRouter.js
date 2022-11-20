@@ -37,6 +37,7 @@ videogamesRouter.post("/", async (req, res) => {
   try {
     res.send(await controllers.postCustomVideogame(gameInfo));
   } catch (error) {
+    console.log(error)
     res.status(400).send(error);
   }
 });
