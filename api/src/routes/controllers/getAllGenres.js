@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('../../config')()
 
 const axios = require('axios')
 const { Genre } = require('../../db')

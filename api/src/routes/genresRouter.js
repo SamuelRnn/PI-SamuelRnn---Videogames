@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('../config')()
 const express = require("express");
 const genresRouter = express.Router();
 const controllers = require('./controllers/index')

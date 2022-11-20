@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('../config')()
 const controllers = require("./controllers/index");
 const express = require("express");
 
