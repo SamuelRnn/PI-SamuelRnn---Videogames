@@ -111,7 +111,7 @@ package-lock.json
 *.txt
 
 # legacy-client from boilerplate
-.client/
+client
 
 
 # Logs
