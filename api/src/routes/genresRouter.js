@@ -1,10 +1,16 @@
-require('../config')()
+require("../config")();
+const controllers = require("../controllers");
 const express = require("express");
-const genresRouter = express.Router();
-const controllers = require('./controllers/index')
 
-genresRouter.get("/", async (req, res) => {
-  res.send(await controllers.getAllGenres());
-});
+const genresRouter = express.Router();
+
+genresRouter
+  .get("/", async (req, res) => {
+    try {
+      res.send(await controllers.getAllGenres());
+    } catch (error) {
+      res.status(500).send(error)
+    }
+  });
 
 module.exports = genresRouter;

@@ -1,7 +1,7 @@
-require('../../config')()
+require('../config')()
 
 const axios = require("axios");
-const { Videogame } = require("../../db");
+const { Videogame } = require("../db");
 
 const { API_KEY } = process.env;
 

@@ -1,7 +1,8 @@
-const { Videogame } = require('../../db');
+const { Videogame } = require('../db');
 const getAllGenres = require('./getAllGenres');
 
 const postCustomVideogame = async (formData) => {
+  //form default field_data = null
   const {
     name, description, released, rating, genres, platforms
   } = formData
@@ -31,7 +32,8 @@ const postCustomVideogame = async (formData) => {
   newGame.addGenres(filteredGenres)
   return {
     status: 'done',
-    message: "Nuevo juego añadido correctamente!"
+    message: "Nuevo juego añadido correctamente!",
+    game: newGame
   }
 };
 

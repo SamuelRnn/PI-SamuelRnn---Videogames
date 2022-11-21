@@ -1,11 +1,11 @@
-const getVideogames = require("./getVideogames");
+const getAllVideogames = require("./getAllVideogames");
 const postCustomVideogame = require("./postCustomVideogame");
 const getAllGenres = require("./getAllGenres");
 const getGameDetail = require("./getGameDetail");
 const getGameBySearch = require("./getGameBySearch");
 
 module.exports = controllers = {
-  getVideogames,
+  getAllVideogames,
   postCustomVideogame,
   getAllGenres,
   getGameDetail,
