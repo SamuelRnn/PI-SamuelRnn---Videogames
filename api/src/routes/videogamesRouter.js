@@ -29,14 +29,14 @@ videogamesRouter
     try {
       res.send(await controllers.getGameDetail(id));
     } catch (error) {
-      res.status(500).send(error);
+      res.status(400).send(error);
     }
   })
 
   .post("/", async (req, res) => {
-    const gameFormData = req.body;
+    const gameCreationForm = req.body;
     try {
-      res.status(201).send(await controllers.postCustomVideogame(gameFormData));
+      res.status(201).send(await controllers.postCustomVideogame(gameCreationForm));
     } catch (error) {
       res.status(400).send(error);
     }

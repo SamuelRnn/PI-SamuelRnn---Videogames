@@ -14,13 +14,12 @@ const getVideogames = async () => {
   while (i < 5) {
     const res = await axios.get(apiUrl);
     const { data } = res;
-    // apiGames = [...apiGames, ...data.results];
     apiGames = apiGames.concat(data.results)
     url = data.next;
     i++;
   }
   //-----------------------------------------------------------
 
-  return {games: apiGames.concat(customGames)}
+  return apiGames.concat(customGames)
 };
 module.exports = getVideogames;
