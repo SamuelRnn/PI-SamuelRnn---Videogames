@@ -7,7 +7,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_GAMES:
-      return;
+      return { ...state, games: action.payload }
     default:
       return { ...state };
   }

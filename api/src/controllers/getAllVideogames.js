@@ -1,11 +1,13 @@
 require('../config')()
 
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 
 const getVideogames = async () => {
-  const customGames = await Videogame.findAll();
+  const customGames = await Videogame.findAll({
+    include: Genre
+  });
 
   let apiGames = [];
   let apiUrl = `https://api.rawg.io/api/games?key=${API_KEY}`;
@@ -15,7 +17,7 @@ const getVideogames = async () => {
     const res = await axios.get(apiUrl);
     const { data } = res;
     apiGames = apiGames.concat(data.results)
-    url = data.next;
+    apiUrl = data.next;
     i++;
   }
   //-----------------------------------------------------------

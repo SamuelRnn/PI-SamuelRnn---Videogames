@@ -1,0 +1,8 @@
+.container{
+  width: 30rem;
+  background-color: rgb(35, 35, 35);
+}
+.img_container{
+  height: 20rem;
+  background-size: cover;
+}
