@@ -5,6 +5,11 @@
   margin-top: 10.4rem;
 }
 /*----------------------------------------*/
+.active_genre_btn{
+  background-color: var(--purple);
+  color: var(--white);
+}
+/*----------------------------------------*/
 .page_btns_container{
   display: flex;
   justify-content: center;

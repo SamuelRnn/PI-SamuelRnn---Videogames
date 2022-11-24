@@ -1,5 +1,6 @@
 const getPageBtns = (paginationSource) => {
-  let pages = Math.ceil(paginationSource.length / 15);
+  const pageSize = 15;
+  let pages = Math.ceil(paginationSource.length / pageSize);
   const numArr = [];
   while (pages !== 0) {
     numArr.unshift(pages);
