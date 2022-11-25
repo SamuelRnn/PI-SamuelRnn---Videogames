@@ -1,24 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Alexandria&family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alexandria&family=Ubuntu&display=swap");
 
 @font-face {
   font-family: "reavers";
   src: url(../fonts/Robot_Reavers.ttf);
 }
 
-:root{
-  --black-bg: rgb(14,14,14);
-  --black-transparent: #0E0E0EEE;
+:root {
+  --black-bg: rgb(21, 21, 21);
+
+  --black-transparent: rgba(20, 20, 20, 0.99);
   --white: rgb(225, 225, 225);
-  --white-transparent: #cecece35;
+  --white-transparent: rgba(255, 255, 255, 0.3);
+  --ghost-white: rgba(200, 200, 200, 0.2);
   --gray: rgb(140, 140, 140);
+  --gray-light: rgb(35, 35, 35);
   --gray-dark: rgb(18, 18, 18);
   --purple: #b91186;
   --purple-light: #b9248c;
-  --blue: #6cd4d4 ;
+  --blue: #6cd4d4;
 
-  --font-text: 'Ubuntu', sans-serif;
-  --font-titles: 'Alexandria', sans-serif;
-  --font-special-titles: 'reavers', sans-serif;
+  --font-text: "Ubuntu", sans-serif;
+  --font-titles: "Alexandria", sans-serif;
+  --font-special-titles: "reavers", sans-serif;
 
   --main-width: min(140rem, 96%);
 }

@@ -3,28 +3,83 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10.4rem;
+  padding-bottom: 6rem;
 }
 /*----------------------------------------*/
-.active_genre_btn{
-  background-color: var(--purple);
+.genres_filter_container{
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin-top: 4rem;
+  margin-bottom: 3.2rem;
+  width: var(--main-width);
+  padding: 1rem;
+  background-color: var(--gray-light);
+}
+.genres_filter_container button{
   color: var(--white);
+  cursor: pointer;
+  background-color: var(--white-transparent);
+  border: none;
+  transition: .2s ease-in-out all;
+  padding: 1rem 2rem;
+}
+.genres_filter_container button:hover{
+  border-radius: .4rem;
+  background-color: var(--purple);
+}
+
+.active_filter{
+  background-color: var(--purple) !important;
+  border-radius: .4rem;
+  border: 1px solid var(--white-transparent) !important;
+  color: var(--white);
+  text-decoration: underline;
 }
 /*----------------------------------------*/
 .page_btns_container{
+  font-family: var(--font-titles);
+  font-size: 1.6rem;
   display: flex;
   justify-content: center;
+  column-gap: .8rem;
+  margin-bottom: 3.2rem;
 }
 .page_btn{
+  border-radius: .2rem;
   --width: 4rem;
   width: var(--width);
   height: var(--width);
+  outline: none;
+  border: none;
+  background-color: var(--gray-light);
+  color: var(--white);
+  transition: .2s ease-in-out all;
+  border: 1px solid var(--gray-light);
 }
-
+.page_btn[title='move']{
+  color: var(--purple);
+}
+.page_btn:hover{
+  background-color: var(--black-bg);
+  border: 1px solid var(--ghost-white);
+}
+.page_btn:active{
+  background-color: var(--purple);
+}
+.active_page{
+  background-color: var(--purple);
+}
+/*----------------------------------------*/
 .gamecards_container{
+  margin-bottom: 4rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  column-gap: 2.4rem;
+  row-gap: 3.2rem;
 }
 
 /*----------------------------------------*/
@@ -50,7 +105,6 @@
     color: var(--white-transparent);
   }
 }
-
 
 .spinner{
   height: 16rem;
