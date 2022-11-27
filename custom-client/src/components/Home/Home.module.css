@@ -18,25 +18,15 @@
   padding: 1rem;
   background-color: var(--gray-light);
 }
-.genres_filter_container button{
-  color: var(--white);
-  cursor: pointer;
-  background-color: var(--white-transparent);
-  border: none;
-  transition: .2s ease-in-out all;
-  padding: 1rem 2rem;
-}
-.genres_filter_container button:hover{
-  border-radius: .4rem;
-  background-color: var(--purple);
-}
 
 .active_filter{
   background-color: var(--purple) !important;
   border-radius: .4rem;
   border: 1px solid var(--white-transparent) !important;
   color: var(--white);
-  text-decoration: underline;
+}
+.active_filter::after{
+  height: 0;
 }
 /*----------------------------------------*/
 .page_btns_container{
@@ -45,7 +35,7 @@
   display: flex;
   justify-content: center;
   column-gap: .8rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 3rem;
 }
 .page_btn{
   border-radius: .2rem;
@@ -56,15 +46,17 @@
   border: none;
   background-color: var(--gray-light);
   color: var(--white);
-  transition: .2s ease-in-out all;
-  border: 1px solid var(--gray-light);
+  transition: .2s ease-in-out;
+  transition-property: border, text-shadow, transform, background-color;
+  border: 2px solid var(--gray-light);
 }
 .page_btn[title='move']{
   color: var(--purple);
 }
 .page_btn:hover{
-  background-color: var(--black-bg);
-  border: 1px solid var(--ghost-white);
+  transform: scale(1.04);
+  border: 2px solid var(--ghost-white);
+  text-shadow: 0 0 5px currentColor;
 }
 .page_btn:active{
   background-color: var(--purple);
@@ -78,36 +70,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  column-gap: 2.4rem;
-  row-gap: 3.2rem;
-}
-
-/*----------------------------------------*/
-.wait_sign_container{
-  margin-top: 12rem;
-  padding: 2rem 4rem;
-  border-radius: .4rem;
-  background-color: var(--gray-dark);
-  border: 1px solid var(--white-transparent);
-}
-.wait_sign_container h2{
-  color: var(--gray);
-  animation: loading 2s infinite;
-}
-@keyframes loading {
-  from{
-    color: var(--white-transparent);
-  }
-  50%{
-    color: var(--white);
-  }
-  100%{
-    color: var(--white-transparent);
-  }
-}
-
-.spinner{
-  height: 16rem;
-  filter: drop-shadow(0px 0px 5px var(--black-bg));
+  column-gap: 3.2rem;
+  row-gap: 4rem;
 }
 

@@ -1,0 +1,29 @@
+.wait_sign_container{
+  margin: 0 auto;
+  margin-top: 24rem;
+  width: min(60rem, 95%);
+  padding: 2rem 4rem;
+  border-radius: .4rem;
+  background-color: var(--gray-dark);
+  border: 1px solid var(--white-transparent);
+}
+.wait_sign_container h2{
+  color: var(--gray);
+  animation: loading 2s infinite;
+}
+@keyframes loading {
+  from{
+    color: var(--white-transparent);
+  }
+  50%{
+    color: var(--white);
+  }
+  100%{
+    color: var(--white-transparent);
+  }
+}
+
+.spinner{
+  height: 16rem;
+  filter: drop-shadow(0px 0px 5px var(--black-bg));
+}

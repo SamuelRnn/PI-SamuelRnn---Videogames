@@ -2,10 +2,9 @@
   position: fixed;
   z-index: 2;
   width: 100%;
-  background-color: var(--black-transparent);
-  backdrop-filter: blur(20px);
+  background-color: var(--black-bg);
   top: 0;
-  border-bottom: 1px solid var(--white-transparent);
+  border-bottom: 1px solid var(--ghost-white);
   box-shadow: 0 0 10px 4px var(--black-transparent);
 }
 .navbar{
@@ -19,30 +18,21 @@
   display: flex;
   align-items: center;
   gap: 3rem;
-}
-img{
-  height: 2.2rem;
+  
 }
 h1{
+  color: var(--white);
   font-family: var(--font-special-titles);
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 h2{
   font-family: var(--font-titles);
   font-size: 1.6rem;
   margin: 0;
 }
-a{
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: var(--gray);
-  height: 6.4rem;
-  gap: .8rem;
-}
 .active_link{
   color: var(--purple);
-  text-shadow: 0 0 4px var(--purple);
+  border-bottom: 3px solid var(--purple);
 }
 .github_btn{
   font-family: var(--font-titles);
@@ -51,4 +41,26 @@ a{
   color: var(--white);
   border-radius: .2rem;
   background-color: var(--purple);
+  position: relative;
+}
+.github_btn .svg{
+  height: 2.4rem;
+  fill: var(--white);
+}
+.github_btn::after{
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  background-color: var(--white);
+  opacity: .3;
+  transition: .2s ease-in-out all;
+}
+.github_btn:hover{
+  color: var(--white);
+}
+.github_btn:hover::after{
+  width: 100%;
 }

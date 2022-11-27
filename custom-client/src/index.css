@@ -2,6 +2,7 @@
 @import url('styles/variables.css');
 
 html {
+  scrollbar-width: thin;
   font-size: 62.5%; /* rem preset: 1rem = 10px */
   box-sizing: border-box; /* optimized css boxes */
 }
@@ -15,4 +16,46 @@ body {
   background-color: var(--black-bg);
   color: var(--white);
   text-align: center;
+}
+a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--gray);
+  height: 6.4rem;
+  gap: 1rem;
+  outline: none;
+  transition: .2s ease-in-out text-shadow;
+}
+a:hover{
+  text-shadow: 0 0 8px currentColor;
+}
+.button{
+  font-size: 1.4rem;
+  border-radius: .2rem;
+  color: var(--white);
+  cursor: pointer;
+  background-color: var(--white-transparent);
+  border: none;
+  transition: .2s ease-in-out color;
+  padding: 1rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.button::after{
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  background-color: var(--white);
+  opacity: .3;
+  transition: .2s ease-in-out width;
+}
+.button:hover{
+  color: var(--white);
+}
+.button:hover::after{
+  width: 100%;
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import styles from "./Home.module.css";
 import Results from "./Results";
-import Loading from "./Loading";
+import Loading from "../Loading/Loading";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Home = () => {
     }
   }, []);
 
-  return <div className={styles.main_container}>{fetchedGames.length ? <Results /> : <Loading />}</div>;
+  return (fetchedGames.length ? <Results /> : <Loading/>)
 };
 
 export default Home;

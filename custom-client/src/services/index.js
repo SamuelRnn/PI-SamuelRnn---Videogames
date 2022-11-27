@@ -3,6 +3,7 @@ import getPageBtns from "./getPageBtns";
 import filterGames from "./filterGames";
 import getGenres from "./getGenres";
 import getNoCurrentFilters from "./getNoCurrentFilters";
+import getGameDetail from "./getGameDetail";
 
 export default {
   getGames,
@@ -10,4 +11,5 @@ export default {
   filterGames,
   getGenres,
   getNoCurrentFilters,
+  getGameDetail,
 };

@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Alexandria&family=Ubuntu&display=swap");
 
 @font-face {
-  font-family: "reavers";
-  src: url(../fonts/Robot_Reavers.ttf);
+  font-family: "bord";
+  src: url(../fonts/bord.otf);
 }
 
 :root {
@@ -15,13 +15,14 @@
   --gray: rgb(140, 140, 140);
   --gray-light: rgb(35, 35, 35);
   --gray-dark: rgb(18, 18, 18);
-  --purple: #b91186;
+  --purple: #a20e47;
   --purple-light: #b9248c;
   --blue: #6cd4d4;
 
   --font-text: "Ubuntu", sans-serif;
   --font-titles: "Alexandria", sans-serif;
-  --font-special-titles: "reavers", sans-serif;
+  --font-special-titles: "bord", sans-serif;
 
   --main-width: min(140rem, 96%);
 }
+
