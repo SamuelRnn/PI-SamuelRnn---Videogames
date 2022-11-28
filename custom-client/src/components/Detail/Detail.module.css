@@ -28,15 +28,24 @@
   opacity: .8;
   overflow-y: scroll;
   scrollbar-width: thin;
-  padding-right: 1rem;
+  padding-right: 2rem;
 }
 .description_container h1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   line-height: .8;
   margin: 0;
   padding-bottom: 2rem;
   margin: 0 0 3rem 0;
   border-bottom: 1px solid var(--ghost-white);
+}
+.description_container h1 a{
+  font-size: 1.6rem;
+  cursor: pointer;
+  height: 2rem;
+  font-family: var(--font-titles);
 }
 .extra_data_container{
   text-align: left;

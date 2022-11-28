@@ -1,7 +1,6 @@
 import { getAllGames } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import styles from "./Home.module.css";
 import Results from "./Results";
 import Loading from "../Loading/Loading";
 

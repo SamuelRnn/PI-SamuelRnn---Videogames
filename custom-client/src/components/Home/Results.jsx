@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Gamecard from "../Game_card/Gamecard";
-import Searchbar from "../Search_bar/Searchbar"
-import styles from "./Home.module.css";
+import styles from "./Results.module.css";
 import services from "../../services";
 import { setActiveFilters } from '../../redux/actions'
 const Results = () => {
@@ -11,12 +10,12 @@ const Results = () => {
   let fetchedGames = useSelector((state) => state.games);
   let fetchedGenres = useSelector((state) => state.genres);
   let activeFilters = useSelector(state => state.activeFilters);
+  let filterMenu = useSelector(state => state.filterMenuState)
 
-  const [games, setGames] = useState(fetchedGames);
-  const [page, setPage] = useState(1);
-  const [orderMenu, toggleOrderMenu] = useState(false)
-  const [sourceMenu, toggleSourceMenu] = useState(false)
-  const [filterMenu, toggleFilterMenu] = useState(false)
+  const [games, setGames] = useState([]);
+  const [page, setPage] = useState( +window.sessionStorage.getItem("page") || 1);
+  const [orderMenu, toggleOrderMenu] = useState(false);
+  const [sourceMenu, toggleSourceMenu] = useState(false);
   //filter Controllers----------------------------------------
   const [filters, setFilters] = useState(activeFilters || {
     active: false,
@@ -46,10 +45,8 @@ const Results = () => {
     } else {
       setGames(fetchedGames)
     }
-    return () => {
-      dispatch(setActiveFilters(filters))
-    }
-  },[filters])
+    dispatch(setActiveFilters(filters))
+  },[filters, fetchedGames])
   //page Controllers-------------------------------------------
 
   const pageNumbers = services.getPageBtns(games);
@@ -65,28 +62,17 @@ const Results = () => {
     if (event.key === 'ArrowRight') goToNextPage();
   };
   document.onkeyup = handleArrowNavigation;
-  //clean-up key events----------------------------------------
+  //clean-up key events and page memo--------------------------
   useEffect(()=>{
+    window.sessionStorage.setItem('page', page)
     return () => {
       document.removeEventListener('keyup', handleArrowNavigation);
     }
-  },[]);
+  },[page]);
 
   return (
     <div className={styles.main_container}>
-      <div className={styles.header_container} hidden>
-        <div className={styles.searchbar_container}>
-          <button 
-            className={`button ${styles.filter_btn} ${filterMenu ? styles.open_filter_menu : null}`} 
-            onClick={()=>toggleFilterMenu(state=>!state)}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={styles.filter_svg}>
-              <path d="M18.75 12.75h1.5a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5zM12 6a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 6zM12 18a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 18zM3.75 6.75h1.5a.75.75 0 100-1.5h-1.5a.75.75 0 000 1.5zM5.25 18.75h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zM3 12a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 013 12zM9 3.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zM12.75 12a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM9 15.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
-            </svg>
-          </button>
-        </div>
-        {
-          filterMenu && <div className={styles.filters_container}>
+      <div className={`${styles.filters_container} ${filterMenu ? null : styles.inactive_section}`}>
           <div className={styles.order_filter_container} >
             <div className={`button ${styles.filter_menu_triger}`} onClick={()=>toggleOrderMenu(state=>!state)}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
@@ -160,78 +146,78 @@ const Results = () => {
               >{genre.name}</button>
             ))
           }
+      </div>
+
+      <div className={styles.content_container}>
+        { !pageNumbers.length || pageNumbers.length === 1 ? null :
+          <div className={styles.page_btns_container}>
+            <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+            </svg>
+        
+        
+            </button>
+            {
+              pageNumbers.map(number => (
+                <button
+                  onClick={() => setPage(number)}
+                  key={number}
+                  className={`${styles.page_btn} ${page === number && styles.active_page}`}
+                >{number}</button>
+              ))
+            }
+            <button title="move" onClick={goToNextPage} className={styles.page_btn}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+            </svg>
+        
+            </button>
+          </div>
+        }
+        
+        <div className={styles.gamecards_container}>
+          {games.slice((page - 1) * 15, page * 15).map(game => {
+            return (
+              <Gamecard
+                id={game.id}
+                key={game.id}
+                name={game.name}
+                background_image={game.background_image}
+                genres={game.genres}
+                rating={game.rating}
+              />
+            );
+          })}
+        </div>
+        
+        { !pageNumbers.length || pageNumbers.length === 1 ? null :
+          <div className={styles.page_btns_container}>
+            <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+            </svg>
+        
+        
+            </button>
+            {
+              pageNumbers.map(number => (
+                <button
+                  onClick={() => setPage(number)}
+                  key={number}
+                  className={`${styles.page_btn} ${page === number && styles.active_page}`}
+                >{number}</button>
+              ))
+            }
+            <button title="move" onClick={goToNextPage} className={styles.page_btn}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+            </svg>
+        
+            </button>
           </div>
         }
       </div>
-
-      { !pageNumbers.length || pageNumbers.length === 1 ? null :
-        <div className={styles.page_btns_container}>
-          <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
-          </svg>
-
-
-          </button>
-          {
-            pageNumbers.map(number => (
-              <button
-                onClick={() => setPage(number)}
-                key={number}
-                className={`${styles.page_btn} ${page === number && styles.active_page}`}
-              >{number}</button>
-            ))
-          }
-          <button title="move" onClick={goToNextPage} className={styles.page_btn}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-          </svg>
-
-          </button>
-        </div>
-      }
-
-      <div className={styles.gamecards_container}>
-        {games.slice((page - 1) * 15, page * 15).map(game => {
-          return (
-            <Gamecard
-              id={game.id}
-              key={game.id}
-              name={game.name}
-              background_image={game.background_image}
-              genres={game.genres}
-              rating={game.rating}
-            />
-          );
-        })}
-      </div>
-
-      { !pageNumbers.length || pageNumbers.length === 1 ? null :
-        <div className={styles.page_btns_container}>
-          <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
-          </svg>
-
-
-          </button>
-          {
-            pageNumbers.map(number => (
-              <button
-                onClick={() => setPage(number)}
-                key={number}
-                className={`${styles.page_btn} ${page === number && styles.active_page}`}
-              >{number}</button>
-            ))
-          }
-          <button title="move" onClick={goToNextPage} className={styles.page_btn}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-          </svg>
-
-          </button>
-        </div>
-      }
     </div>
   );
 };

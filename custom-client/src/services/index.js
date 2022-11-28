@@ -4,6 +4,7 @@ import filterGames from "./filterGames";
 import getGenres from "./getGenres";
 import getNoCurrentFilters from "./getNoCurrentFilters";
 import getGameDetail from "./getGameDetail";
+import getSearch from "./getSearch";
 
 export default {
   getGames,
@@ -12,4 +13,5 @@ export default {
   getGenres,
   getNoCurrentFilters,
   getGameDetail,
+  getSearch,
 };

@@ -5,7 +5,7 @@
   background-color: var(--black-bg);
   top: 0;
   border-bottom: 1px solid var(--ghost-white);
-  box-shadow: 0 0 10px 4px var(--black-transparent);
+  box-shadow: 0 0 20px 10px var(--black-transparent);
 }
 .navbar{
   width: var(--main-width);
@@ -29,7 +29,7 @@ h1{
 }
 h2{
   font-family: var(--font-titles);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   margin: 0;
 }
 .active_link{
@@ -45,6 +45,7 @@ h2{
   border-radius: .2rem;
   background-color: var(--purple);
   position: relative;
+  border: 1px solid var(--ghost-white);
 }
 .github_btn .svg{
   height: 2.4rem;
@@ -66,4 +67,32 @@ h2{
 }
 .github_btn:hover::after{
   width: 100%;
+}
+/*----------------------------------------*/
+.filter_menu_toggle, .options_menu{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 4rem;
+  width: 4rem;
+  border: none;
+  border-radius: .2rem;
+  background-color: var(--gray-dark);
+  transition: .2s ease-in-out;
+  transition-property: border-color, background-color;
+}
+
+.filter_menu_toggle svg, .options_menu svg{
+  color: var(--white);
+  height: 2.4rem;
+  width: 2.4rem;
+}
+.active_btn{
+  background-color: var(--purple);
+}
+.active_btn::after{
+  height: 0;
 }
