@@ -2,6 +2,7 @@ import services from '../services';
 
 export const GET_ALL_GAMES = 'GET_ALL_GAMES';
 export const GET_ALL_GENRES = 'GET_ALL_GENRES';
+export const SET_ACTIVE_FILTERS = 'SET_ACTIVE_FILTERS';
 
 export const getAllGames = () => {
   return function (dispatch){
@@ -21,3 +22,9 @@ export const getAllGenres = () => {
       }))
   }
 };
+export const setActiveFilters = (filters) => {
+  return {
+    type: SET_ACTIVE_FILTERS,
+    payload: filters
+  }
+}

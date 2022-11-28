@@ -17,8 +17,10 @@
 .link_group{
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+.link_group[title="nav"]{
   gap: 3rem;
-  
 }
 h1{
   color: var(--white);
@@ -31,13 +33,14 @@ h2{
   margin: 0;
 }
 .active_link{
+  position: relative;
   color: var(--purple);
   border-bottom: 3px solid var(--purple);
 }
 .github_btn{
   font-family: var(--font-titles);
-  height: 3.6rem;
-  padding: .8rem;
+  height: 4rem;
+  padding: 1.6rem;
   color: var(--white);
   border-radius: .2rem;
   background-color: var(--purple);

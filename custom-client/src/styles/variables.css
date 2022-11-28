@@ -6,17 +6,16 @@
 }
 
 :root {
-  --black-bg: rgb(21, 21, 21);
+  --black-bg: rgb(19, 19, 20);
 
-  --black-transparent: rgba(20, 20, 20, 0.99);
+  --black-transparent: rgba(20, 20, 20, 0.90);
   --white: rgb(225, 225, 225);
   --white-transparent: rgba(255, 255, 255, 0.3);
   --ghost-white: rgba(200, 200, 200, 0.2);
-  --gray: rgb(140, 140, 140);
-  --gray-light: rgb(35, 35, 35);
-  --gray-dark: rgb(18, 18, 18);
+  --gray: rgb(140, 140, 150);
+  --gray-light: rgb(29,29,33);
+  --gray-dark: rgb(22, 22, 26);
   --purple: #a20e47;
-  --purple-light: #b9248c;
   --blue: #6cd4d4;
 
   --font-text: "Ubuntu", sans-serif;

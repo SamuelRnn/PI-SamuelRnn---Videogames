@@ -13,8 +13,6 @@
 .landing_content{
   backdrop-filter: grayscale(.5) blur(10px);
   opacity: .9;
-  box-shadow: 0 0 10px 1px var(--black-bg);
-  border-right: 1px solid var(--ghost-white);
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -22,7 +20,7 @@
   height: 100vh;
   width: min(60rem, 100%);
   padding: 4rem 2rem;
-  background-color: rgba(18,18,18,.8);
+  background-color: rgba(19,19,20,.8);
 }
 .landing_content h2{
   text-align: left;

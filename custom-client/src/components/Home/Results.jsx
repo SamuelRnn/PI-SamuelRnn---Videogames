@@ -1,23 +1,29 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Gamecard from "../Game_card/Gamecard";
+import Searchbar from "../Search_bar/Searchbar"
 import styles from "./Home.module.css";
 import services from "../../services";
-
+import { setActiveFilters } from '../../redux/actions'
 const Results = () => {
+  const dispatch = useDispatch()
+
   let fetchedGames = useSelector((state) => state.games);
   let fetchedGenres = useSelector((state) => state.genres);
+  let activeFilters = useSelector(state => state.activeFilters);
 
   const [games, setGames] = useState(fetchedGames);
   const [page, setPage] = useState(1);
+  const [orderMenu, toggleOrderMenu] = useState(false)
+  const [sourceMenu, toggleSourceMenu] = useState(false)
+  const [filterMenu, toggleFilterMenu] = useState(false)
   //filter Controllers----------------------------------------
-  const localActiveFilters = JSON.parse(window.sessionStorage.getItem('active_filters')) || {
+  const [filters, setFilters] = useState(activeFilters || {
     active: false,
     source: false,
     genre: false,
     order: false,
-  }
-  const [filters, setFilters] = useState(localActiveFilters);
+  });
 
   const toggleFilters = (event) => {
     const { id, name } = event.target;
@@ -41,7 +47,7 @@ const Results = () => {
       setGames(fetchedGames)
     }
     return () => {
-      window.sessionStorage.setItem('active_filters', JSON.stringify(filters))
+      dispatch(setActiveFilters(filters))
     }
   },[filters])
   //page Controllers-------------------------------------------
@@ -68,57 +74,85 @@ const Results = () => {
 
   return (
     <div className={styles.main_container}>
-      <div className={styles.filters_container}>
-        <div className={styles.order_filters_container} hidden>
-          <h2>Order</h2>
-          <button
-            className={filters.order === 'ASC' ? styles.active_filter : null}
-            id='ASC'
-            name="order"
-            onClick={toggleFilters}
-          >A-Z</button>
-          <button
-            className={filters.order === 'DESC' ? styles.active_filter : null}
-            id='DESC'
-            name="order"
-            onClick={toggleFilters}
-          >Z-A</button>
-
-          <button
-            className={filters.order === 'WORST' ? styles.active_filter : null}
-            id='WORST'
-            name="order"
-            onClick={toggleFilters}
-          >Worst rated first</button>
-          <button
-            className={filters.order === 'BEST' ? styles.active_filter : null}
-            id='BEST'
-            name="order"
-            onClick={toggleFilters}
-          >Best rated first</button>
+      <div className={styles.header_container} hidden>
+        <div className={styles.searchbar_container}>
+          <button 
+            className={`button ${styles.filter_btn} ${filterMenu ? styles.open_filter_menu : null}`} 
+            onClick={()=>toggleFilterMenu(state=>!state)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={styles.filter_svg}>
+              <path d="M18.75 12.75h1.5a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5zM12 6a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 6zM12 18a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 18zM3.75 6.75h1.5a.75.75 0 100-1.5h-1.5a.75.75 0 000 1.5zM5.25 18.75h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zM3 12a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 013 12zM9 3.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zM12.75 12a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM9 15.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+            </svg>
+          </button>
         </div>
-
-        <div className={styles.source_filters_container} hidden>
-          <h2>Source</h2>
-          <button
-            className={filters.source === 'api' ? styles.active_filter : null}
-            id='api'
-            name="source"
-            onClick={toggleFilters}
-          >Api</button>
-          <button
-            className={filters.source === 'custom' ? styles.active_filter : null}
-            id='custom'
-            name="source"
-            onClick={toggleFilters}
-          >Custom</button>
-        </div>
-
-        <div className={styles.genres_filter_container}>
+        {
+          filterMenu && <div className={styles.filters_container}>
+          <div className={styles.order_filter_container} >
+            <div className={`button ${styles.filter_menu_triger}`} onClick={()=>toggleOrderMenu(state=>!state)}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+              Order by
+            </div>
+            {
+              orderMenu &&
+              <div className={styles.filter_list}>
+                <button
+                  className={filters.order === 'ASC' ? styles.active_filter : null}
+                  id='ASC'
+                  name="order"
+                  onClick={toggleFilters}
+                >A-Z</button>
+                <button
+                  className={filters.order === 'DESC' ? styles.active_filter : null}
+                  id='DESC'
+                  name="order"
+                  onClick={toggleFilters}
+                >Z-A</button>
+                <button
+                  className={filters.order === 'WORST' ? styles.active_filter : null}
+                  id='WORST'
+                  name="order"
+                  onClick={toggleFilters}
+                >Worst rated first</button>
+                <button
+                  className={filters.order === 'BEST' ? styles.active_filter : null}
+                  id='BEST'
+                  name="order"
+                  onClick={toggleFilters}
+                >Best rated first</button>
+              </div>
+            }
+          </div>
+          <div className={styles.source_filter_container}>
+            <div className={`button ${styles.filter_menu_triger}`} onClick={()=>toggleSourceMenu(state=>!state)}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+              Select source
+            </div>
+            {
+              sourceMenu &&
+              <div className={styles.filter_list}>
+                <button
+                  className={filters.source === 'api' ? styles.active_filter : null}
+                  id='api'
+                  name="source"
+                  onClick={toggleFilters}
+                >Api</button>
+                <button
+                  className={filters.source === 'custom' ? styles.active_filter : null}
+                  id='custom'
+                  name="source"
+                  onClick={toggleFilters}
+                >Custom</button>
+              </div>
+            }
+          </div>
           { 
             fetchedGenres.map(genre => (
               <button
-                className={`button ${filters.genre == genre.id ? styles.active_filter : null}`}
+                className={`button ${filters.genre == genre.id ? styles.active_genre : null}`}
                 onClick={toggleFilters}
                 key={genre.id}
                 id={genre.id}
@@ -126,15 +160,18 @@ const Results = () => {
               >{genre.name}</button>
             ))
           }
-        </div>
+          </div>
+        }
       </div>
 
       { !pageNumbers.length || pageNumbers.length === 1 ? null :
         <div className={styles.page_btns_container}>
           <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path transform="rotate(180, 10, 10)" id="svg_1" d="m6.12789,2.841a1.5,1.5 0 0 0 -2.3,1.269l0,11.78a1.5,1.5 0 0 0 2.3,1.269l9.344,-5.89a1.5,1.5 0 0 0 0,-2.538l-9.344,-5.891l0,0.001z"/>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+          </svg>
+
+
           </button>
           {
             pageNumbers.map(number => (
@@ -146,9 +183,10 @@ const Results = () => {
             ))
           }
           <button title="move" onClick={goToNextPage} className={styles.page_btn}>
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-              <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+          </svg>
+
           </button>
         </div>
       }
@@ -171,9 +209,11 @@ const Results = () => {
       { !pageNumbers.length || pageNumbers.length === 1 ? null :
         <div className={styles.page_btns_container}>
           <button title="move" onClick={goToPrevPage} className={styles.page_btn}>
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path transform="rotate(180, 10, 10)" id="svg_1" d="m6.12789,2.841a1.5,1.5 0 0 0 -2.3,1.269l0,11.78a1.5,1.5 0 0 0 2.3,1.269l9.344,-5.89a1.5,1.5 0 0 0 0,-2.538l-9.344,-5.891l0,0.001z"/>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+          </svg>
+
+
           </button>
           {
             pageNumbers.map(number => (
@@ -185,9 +225,10 @@ const Results = () => {
             ))
           }
           <button title="move" onClick={goToNextPage} className={styles.page_btn}>
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-              <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+          </svg>
+
           </button>
         </div>
       }

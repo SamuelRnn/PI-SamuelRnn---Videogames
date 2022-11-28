@@ -25,7 +25,7 @@ a{
   height: 6.4rem;
   gap: 1rem;
   outline: none;
-  transition: .2s ease-in-out text-shadow;
+  transition: .24s ease-in-out text-shadow;
 }
 a:hover{
   text-shadow: 0 0 8px currentColor;

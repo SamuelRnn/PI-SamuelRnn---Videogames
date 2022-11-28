@@ -1,8 +1,9 @@
-import { GET_ALL_GAMES, GET_ALL_GENRES } from "./actions";
+import { GET_ALL_GAMES, GET_ALL_GENRES, SET_ACTIVE_FILTERS } from "./actions";
 
 const initialState = {
   games: [],
   genres: [],
+  activeFilters: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, games: action.payload }
     case GET_ALL_GENRES:
       return { ...state, genres: action.payload }
+    case SET_ACTIVE_FILTERS:
+      return { ...state, activeFilters: action.payload }
     default:
       return { ...state };
   }

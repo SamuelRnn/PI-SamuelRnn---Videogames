@@ -1,0 +1,39 @@
+.searchbar_container{
+  display: flex;
+  height: 4rem;
+  overflow: hidden;
+  border-radius: .2rem;
+  border: 1px solid var(--ghost-white);
+  transition: .2s ease-in-out border;
+}
+.searchbar_container input{
+  width: 40rem;
+  padding: 0 1.6rem;
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+  opacity: .8;
+  outline: none;
+}
+
+.searchbar_container:focus-within{
+  border: 1px solid var(--purple);
+}
+.searchbar_container:not(:focus-within) > button{
+  pointer-events: none;
+}
+.searchbar_container button{
+  border: none;
+  background-color: transparent;
+  width: 4rem;
+  color: var(--white);  
+}
+.searchbar_container button:hover > .svg{
+  color: var(--purple);
+}
+.svg{
+  margin: auto;
+  height: 2rem;
+  width: 2rem;
+  transition: .2s ease-in-out color;
+}

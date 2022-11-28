@@ -1,11 +1,12 @@
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
+import Searchbar from '../Search_bar/Searchbar';
 
 const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.navbar}>
-        <div className={styles.link_group}>
+        <div className={styles.link_group} title="nav">
           <NavLink to="/">
             <h1>GameXploRe</h1>
           </NavLink>
@@ -17,6 +18,7 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className={styles.link_group}>
+          <Searchbar/>
           <a
             href="https://github.com/SamuelRnn/PI-SamuelRnn---Videogames"
             className={styles.github_btn}
