@@ -69,7 +69,7 @@ h2{
   width: 100%;
 }
 /*----------------------------------------*/
-.filter_menu_toggle, .options_menu{
+.filter_menu_toggle{
   margin: 0;
   padding: 0;
   display: flex;
@@ -85,7 +85,7 @@ h2{
   transition-property: border-color, background-color;
 }
 
-.filter_menu_toggle svg, .options_menu svg{
+.filter_menu_toggle svg{
   color: var(--white);
   height: 2.4rem;
   width: 2.4rem;

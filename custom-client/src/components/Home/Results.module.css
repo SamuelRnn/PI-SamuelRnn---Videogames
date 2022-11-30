@@ -28,6 +28,7 @@
 }
 /*----------------------------------------*/
 .filter_list{
+  backdrop-filter: blur(10px);
   z-index: 1;
   background-color: var(--black-transparent);
   position: absolute;
@@ -74,11 +75,36 @@
   background-color: var(--purple);
 }
 .filter_menu_triger svg{
+  transition: .2s ease-in-out transform;
+  margin-left: -.4rem;
   height: 2rem;
   width: 2rem;
 }
 .active_filter{
   background-color: var(--purple) !important;
+}
+.active svg{
+  transform: rotate(180deg);
+}
+/*----------------------------------------*/
+.options_menu{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 4rem;
+  width: 4rem;
+  border: none;
+  border-radius: .2rem;
+  background-color: var(--gray-dark);
+  transition: .2s ease-in-out;
+}
+.options_menu svg{
+  color: var(--white);
+  height: 2.4rem;
+  width: 2.4rem;
 }
 /*----------------------------------------*/
 .filters_container{
@@ -96,7 +122,7 @@
   display: none;
 }
 /*----------------------------------------*/
-.order_filter_container, .source_filter_container{
+.order_filter_container, .source_filter_container, .options_filter_container{
   position: relative;
   display: flex;
   flex-direction: column;

@@ -1,0 +1,148 @@
+.main_container{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: var(--main-width);
+  padding-top: 10.4rem;
+  align-items: center;
+  padding-bottom: 8rem;
+}
+.main_container h2{
+  text-align: start;
+  opacity: .8;
+  color: var(--purple);
+}
+.main_container form{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.form_container{
+  width: min(54rem, 95%);
+  border-radius: .4rem 0 0 1rem;
+  border: 1px solid var(--ghost-white);
+  background-color: var(--gray-light);
+  grid-column: 0 / 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.4rem;
+  padding: 3.2rem 2.4rem;
+  transition: .4s ease-in-out box-shadow;
+}
+.form_container form input, .main_container form textarea{
+  padding: 0 1.6rem;
+  height: 4rem;
+  background-color: transparent;
+  outline: none;
+  border-radius: .4rem;
+  border: 1px solid var(--ghost-white);
+  color: var(--white);
+  transition: .2s ease-in-out border-color;
+}
+.form_container input[name="rating"]{
+  width: 8rem;
+}
+.form_container form textarea{
+  resize: none;
+  height: 14.2rem;
+  padding: 1rem 1.6rem;
+}
+.numeric_fields{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 3rem;
+}
+.date_field, .rating_field{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+.rating_field{
+  width: 16rem;
+}
+.date_container{
+  display: flex;
+  gap: 1rem;
+}
+@media (max-width: 570px){
+  .date_field, .rating_field{
+    width: 100%;
+  }
+}
+.form_container label{
+  color: var(--purple);
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--ghost-white);
+  padding-bottom: 1rem;
+  font-size: 1.4rem;
+  opacity: .8;
+  text-align: left;
+}
+.form_container form p{
+  padding: 0;
+  margin: 0;
+  text-align: start;
+  color: red;
+  opacity: .5;
+  margin-top: -1rem;
+  font-size: 1.4rem;
+}
+.date_container input{
+  max-width: 8.4rem;
+}
+.selection_container{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: .4rem;
+}
+.selection_container button{
+  cursor: pointer;
+  padding: .4rem 2rem;
+  background: transparent;
+  color: var(--gray);
+  border: 1px solid var(--ghost-white);
+  border-radius: 1rem;
+  transition: .2s ease-in-out;
+  transition-property:  border-color, background-color;
+}
+.selection_container button:hover{
+  border-color: var(--purple);
+}
+.selection_container button[id="clear-all"]{
+  border-color: var(--purple);
+  color: var(--purple);
+}
+.active_genre{
+  background-color: var(--purple) !important;
+  color: var(--white) !important;
+}
+/*----------------------------------------*/
+.img_container{
+  border-radius: 0 1rem 1rem 0;
+  height: 85%;
+  width: 100%;
+  background-image: url(../../../img.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid var(--ghost-white);
+  border-left: none;
+}
+/*----------------------------------------*/
+.form_container input:focus, .form_container textarea:focus{
+  border-color: var(--purple);
+}
+.submit{
+  margin-top: 2rem;
+  background-color: var(--purple);
+  font-size: 1.6rem;
+  font-family: var(--font-titles);
+  height: 5rem;
+  transition: .2s ease-in-out background-color;
+}
+.submit:disabled{
+  pointer-events: none;
+  background-color: var(--gray-dark);
+  color: var(--ghost-white);
+}

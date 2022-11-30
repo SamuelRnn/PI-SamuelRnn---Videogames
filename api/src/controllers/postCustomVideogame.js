@@ -19,7 +19,7 @@ const postCustomVideogame = async (formData) => {
   if(gameAlreadyExist){
     throw {
       status: false,
-      message: 'The game already exist!'
+      message: 'The game already exist! Choose another name.'
     }
   }
   const newGame = await Videogame.create({
@@ -27,7 +27,7 @@ const postCustomVideogame = async (formData) => {
   })
   const allGenres = await getAllGenres();
   const filteredGenres = genres.map(genre => (
-    allGenres.find(g => g.name === genre)
+    allGenres.find(g => g.id === genre)
   ))
   newGame.addGenres(filteredGenres)
   return {

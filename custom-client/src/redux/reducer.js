@@ -8,7 +8,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  games: [],
+  games: false,
   genres: [],
   activeFilters: false,
   filterMenuState: true,
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
     case SET_SEARCHED_GAMES:
       return { ...state, games: action.payload }
     case RESET_GAMES:
-      return { ...state, games: [] }
+      return { ...state, games: false }
     default:
       return { ...state };
   }

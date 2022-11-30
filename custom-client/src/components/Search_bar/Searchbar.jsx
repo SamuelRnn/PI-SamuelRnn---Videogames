@@ -14,11 +14,10 @@ const Searchbar = () => {
   }
   const handleSubmit = event => {
     event.preventDefault();
-    setSearch('')
-    document.getElementById('search').blur()
+    setSearch('');
+    document.getElementById('search').blur();
     dispatch(resetGames());
-    // line to activate when creating new data
-    // window.sessionStorage.removeItem("games");
+    window.sessionStorage.removeItem('page')
     dispatch(setSearchedGames(search));
     history.push("/home");
   }

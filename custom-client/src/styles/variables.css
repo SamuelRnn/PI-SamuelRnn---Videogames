@@ -8,7 +8,7 @@
 :root {
   --black-bg: rgb(19, 19, 20);
 
-  --black-transparent: rgba(20, 20, 20, 0.90);
+  --black-transparent: rgba(20, 20, 20, 0.5);
   --white: rgb(225, 225, 225);
   --white-transparent: rgba(255, 255, 255, 0.3);
   --ghost-white: rgba(200, 200, 200, 0.2);

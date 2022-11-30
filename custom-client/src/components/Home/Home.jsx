@@ -13,7 +13,7 @@ const Home = () => {
     }
   }, []);
 
-  return (fetchedGames.length ? <Results /> : <Loading/>)
+  return (fetchedGames ? <Results /> : <Loading/>)
 };
 
 export default Home;

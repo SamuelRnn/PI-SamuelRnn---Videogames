@@ -18,8 +18,8 @@ const App = () => {
     <Router>
       <Route exact path="/" component={Landing} />
       <Route path="/" component={Navbar} />
-      <Route path="/home" component={Home} />
-      <Route path="/create" component={CreationForm} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/create" component={CreationForm} />
       <Route path="/game/:id" component={Detail} />
     </Router>
   );

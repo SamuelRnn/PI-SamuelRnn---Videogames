@@ -1,7 +1,7 @@
 require('../config')()
 
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 
 const { API_KEY } = process.env;
 
@@ -15,6 +15,7 @@ const getGameDetail = async (id) => {
   }
   const detail = await Videogame.findOne({
     where: { id },
+    include: Genre
   });
   if (!detail) throw { message: "Not Found!" };
   return detail;

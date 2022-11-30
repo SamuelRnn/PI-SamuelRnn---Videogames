@@ -5,6 +5,8 @@ import getGenres from "./getGenres";
 import getNoCurrentFilters from "./getNoCurrentFilters";
 import getGameDetail from "./getGameDetail";
 import getSearch from "./getSearch";
+import postCustomGame from "./postCustomGame";
+import validateCreationForm from "./validateCreationForm";
 
 export default {
   getGames,
@@ -14,4 +16,6 @@ export default {
   getNoCurrentFilters,
   getGameDetail,
   getSearch,
+  postCustomGame,
+  validateCreationForm,
 };
