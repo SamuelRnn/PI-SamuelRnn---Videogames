@@ -6,7 +6,7 @@ const videogamesRouter = express.Router();
 
 videogamesRouter
   .get("/", async (req, res) => {
-    const { name, source } = req.query;
+    const { name } = req.query;
       if (name) {
         try {
         const data = await controllers.getGameBySearch(name);
@@ -19,7 +19,6 @@ videogamesRouter
           const data = await controllers.getAllVideogames();
           res.send(data);
         } catch (error) {
-          console.log(error)
           res.status(500).send(error)
         }
       }
@@ -30,7 +29,7 @@ videogamesRouter
     try {
       res.send(await controllers.getGameDetail(id));
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).json(error);
     }
   })
 
