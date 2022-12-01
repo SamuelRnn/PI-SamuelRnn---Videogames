@@ -3,12 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import services from "../../services";
-import { useHistory } from "react-router-dom";
-import { getAllGames, resetGames } from "../../redux/actions";
+import {  resetGames } from "../../redux/actions";
 import Modal from "../Form_modal/Modal";
 
 const CreationForm = () => {
-  const history = useHistory();
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
   const platforms = [

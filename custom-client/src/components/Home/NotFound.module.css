@@ -1,5 +1,36 @@
 .main_container{
-  margin-top: 4rem;
-  height: 60vh;
+  margin-top: 6rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.content{
+  border-radius: .4rem;
+  border: 1px solid var(--ghost-white);
+  width: min(50rem, 95%);
+  padding: 5rem 3rem;
+  background-color: var(--gray-dark);
+}
+.content h1 {
+  width: 100%;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--ghost-white);
+}
+.content p{
+  opacity: .75;
+}
+.robot{
+  height: 10rem;
+  width: 10rem;
+}
+.info_container{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+}
+.btn_ref{
+  width: 2rem;
+  height: 2rem;
 }

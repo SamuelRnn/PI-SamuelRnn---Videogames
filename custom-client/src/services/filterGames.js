@@ -1,6 +1,6 @@
 const filterGames = (gamesArray, filters) => {
   if(filters.source === 'api'){
-    gamesArray = gamesArray.filter(game => game.user_game === null)
+    gamesArray = gamesArray.filter(game => typeof +game.id === "number")
   }
   if(filters.source === 'custom'){
     gamesArray = gamesArray.filter(game => game.user_game === undefined)

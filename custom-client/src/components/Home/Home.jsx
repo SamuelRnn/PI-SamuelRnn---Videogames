@@ -8,7 +8,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const fetchedGames = useSelector((state) => state.games)
   useEffect(() => {
-    if(!fetchedGames.length){
+    if(!fetchedGames){
       dispatch(getAllGames());
     }
   }, []);
