@@ -29,7 +29,7 @@ videogamesRouter
     try {
       res.send(await controllers.getGameDetail(id));
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).send(error);
     }
   })
 
