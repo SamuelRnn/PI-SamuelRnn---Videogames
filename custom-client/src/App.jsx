@@ -9,6 +9,9 @@ import Navbar from "./components/Nav_bar/Navbar";
 import CreationForm from "./components/Creation_form/CreationForm";
 import Detail from "./components/Detail/Detail";
 
+import axios from 'axios';
+axios.defaults.baseURL = import.meta.env.VITE_BACK_URL
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {

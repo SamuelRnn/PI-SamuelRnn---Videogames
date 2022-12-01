@@ -1,6 +1,6 @@
 import axios from 'axios';
 const getGameDetail = async (id) => {
-  const fetchedData = await axios.get(`http://localhost:3001/videogames/${id}`)
+  const fetchedData = await axios.get(`/videogames/${id}`)
   return fetchedData.data
 }
 
