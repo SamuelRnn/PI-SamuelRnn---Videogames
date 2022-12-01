@@ -8,9 +8,7 @@ const { API_KEY } = process.env;
 const getGameDetail = async (id) => {
   const numericId = !isNaN(+id)
   if (numericId) {
-    const apiUrl = `https://api.rawg.io/api/games/${id}?key=${API_KEY}`;
-    console.log(apiUrl)
-    const fetchedGame = await axios.get(apiUrl);
+    const fetchedGame = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
     return fetchedGame.data;
   }
   const detail = await Videogame.findOne({

@@ -7,8 +7,7 @@ const { Videogame } = require("../db");
 const { API_KEY } = process.env;
 
 const getGameBySearch = async (search) => {
-  const apiUrl = `https://api.rawg.io/api/games?search=${search}&key=${API_KEY}`;
-  const res = await axios.get(apiUrl);
+  const res = await axios.get(`https://api.rawg.io/api/games?search=${search}&key=${API_KEY}`);
   const apiGames = res.data;
   const customGames = await Videogame.findAll({
     where: {
