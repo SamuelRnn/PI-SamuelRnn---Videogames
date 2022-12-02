@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-// const axios = require('axios')
+const axios = require('axios')
 const { Genre } = require('../db')
 
 const {API_KEY} = process.env;
@@ -10,12 +10,9 @@ const getAllGenres = async () => {
   if(storedGenres.length){
     return storedGenres
   }
-  // const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-  // const {results} = res.data
+  const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+  const {results} = res.data
 
-  const res = await fetch(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-  const data = await res.json()
-  const {results} = data
   const genres = results.map(genre => ({
     id: genre.id,
     name : genre.name

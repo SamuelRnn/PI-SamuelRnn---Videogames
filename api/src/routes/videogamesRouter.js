@@ -12,6 +12,7 @@ videogamesRouter
         const data = await controllers.getGameBySearch(name);
         res.send(data);
         } catch (error) {
+          console.log(error)
           res.status(404).send(error);
         }
       } else {
@@ -19,6 +20,7 @@ videogamesRouter
           const data = await controllers.getAllVideogames();
           res.send(data);
         } catch (error) {
+          console.log(error)
           res.status(500).send(error)
         }
       }
@@ -29,6 +31,7 @@ videogamesRouter
     try {
       res.send(await controllers.getGameDetail(id));
     } catch (error) {
+      console.log(error)
       res.status(400).send(error);
     }
   })
@@ -38,6 +41,7 @@ videogamesRouter
     try {
       res.status(201).send(await controllers.postCustomVideogame(gameCreationForm));
     } catch (error) {
+      console.log(error)
       res.status(400).send(error);
     }
   });
