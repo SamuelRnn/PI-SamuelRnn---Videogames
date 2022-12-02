@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const axios = require("axios");
+const axios = require("axios").default;
 const { Videogame, Genre } = require("../db");
 
 const { API_KEY } = process.env;
@@ -8,7 +8,11 @@ const { API_KEY } = process.env;
 const getGameDetail = async (id) => {
   const numericId = !isNaN(+id)
   if (numericId) {
-    const fetchedGame = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+    const fetchedGame = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`, {
+      headers: {
+        "Accept-Encoding": "null",
+      },    
+    });
     return fetchedGame.data;
   }
   const detail = await Videogame.findOne({

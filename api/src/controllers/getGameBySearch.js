@@ -1,13 +1,17 @@
 require('dotenv').config()
 
-const axios = require("axios");
+const axios = require("axios").default;
 const { Op } = require("sequelize");
 const { Videogame } = require("../db");
 
 const { API_KEY } = process.env;
 
 const getGameBySearch = async (search) => {
-  const res = await axios.get(`https://api.rawg.io/api/games?search=${search}&key=${API_KEY}`);
+  const res = await axios.get(`https://api.rawg.io/api/games?search=${search}&key=${API_KEY}`, {
+    headers: {
+      "Accept-Encoding": "null",
+    },    
+  });
   const apiGames = res.data;
   const customGames = await Videogame.findAll({
     where: {

@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const axios = require("axios");
+const axios = require("axios").default;
 const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 
@@ -14,7 +14,11 @@ const getVideogames = async () => {
   // gets the first 100 results, default page-size = 20 results
   let i = 0;
   while (i < 5) {
-    const res = await axios.get(apiUrl);
+    const res = await axios.get(apiUrl, {
+      headers: {
+        "Accept-Encoding": "null",
+      },    
+    });
     const { data } = res;
     apiGames = apiGames.concat(data.results)
     apiUrl = data.next;

@@ -11,26 +11,17 @@ const getAllGenres = async () => {
     return storedGenres
   }
   console.log(API_KEY)
-  try {
-    const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`, {
-      headers: {
-        "Accept-Encoding": "null",
-      },    
-    })
-    console.log(res)
-    const {results} = res.data
-  
-    console.log(results)
-    
-  } catch (error) {
-    console.log(error)
-    return error
-  }
-  // const genres = results.map(genre => ({
-  //   id: genre.id,
-  //   name : genre.name
-  // }))
-  // return await Genre.bulkCreate(genres)
+  const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`, {
+    headers: {
+      "Accept-Encoding": "null",
+    },    
+  })
+  const {results} = res.data
+  const genres = results.map(genre => ({
+    id: genre.id,
+    name : genre.name
+  }))
+  return await Genre.bulkCreate(genres)
 };
 
 module.exports = getAllGenres;
