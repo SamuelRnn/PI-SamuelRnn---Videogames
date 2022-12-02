@@ -12,7 +12,11 @@ const getAllGenres = async () => {
   }
   console.log(API_KEY)
   try {
-    const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+    const res = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`, {
+      headers: {
+        "Accept-Encoding": "null",
+      },    
+    })
     console.log(res)
     const {results} = res.data
   
