@@ -127,16 +127,16 @@ const Filters = ({ fetchedGenres, setFilters, filters, setPage }) => {
           {menus.orderMenu && (
             <div className={styles.filter_list}>
               <button
-                className={filters.order === "ASC" ? styles.active_filter : null}
-                id="ASC"
+                className={filters.order === "A-Z" ? styles.active_filter : null}
+                id="A-Z"
                 name="order"
                 onClick={toggleFilters}
               >
                 A-Z
               </button>
               <button
-                className={filters.order === "DESC" ? styles.active_filter : null}
-                id="DESC"
+                className={filters.order === "Z-A" ? styles.active_filter : null}
+                id="Z-A"
                 name="order"
                 onClick={toggleFilters}
               >
@@ -144,17 +144,17 @@ const Filters = ({ fetchedGenres, setFilters, filters, setPage }) => {
               </button>
               <button
                 className={
-                  filters.order === "WORST" ? styles.active_filter : null
+                  filters.order === "worst-rated-first" ? styles.active_filter : null
                 }
-                id="WORST"
+                id="worst-rated-first"
                 name="order"
                 onClick={toggleFilters}
               >
                 Worst rated first
               </button>
               <button
-                className={filters.order === "BEST" ? styles.active_filter : null}
-                id="BEST"
+                className={filters.order === "best-rated-first" ? styles.active_filter : null}
+                id="best-rated-first"
                 name="order"
                 onClick={toggleFilters}
               >
@@ -210,11 +210,11 @@ const Filters = ({ fetchedGenres, setFilters, filters, setPage }) => {
         {fetchedGenres.map((genre) => (
           <button
             className={`button ${
-              filters.genre == genre.id ? styles.active_genre : null
+              filters.genre == genre.name ? styles.active_genre : null
             }`}
             onClick={toggleFilters}
             key={genre.id}
-            id={genre.id}
+            id={genre.name}
             name="genre"
           >
             {genre.name}
@@ -225,6 +225,7 @@ const Filters = ({ fetchedGenres, setFilters, filters, setPage }) => {
         Object.values(filters).slice(1).every(val => val === false) ?
         null :
         <p>Active Filters: {Object.values(filters).slice(1).filter(val => val !== false).join(', ')}</p>
+        //bordeado diferente dependiendo de su source
       }
     </>
   );
