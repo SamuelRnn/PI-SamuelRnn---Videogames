@@ -1,7 +1,7 @@
 import { getAllGames } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Results from "./Results";
+import Results from "./Results/Results";
 import Loading from "../Loading/Loading";
 
 const Home = () => {

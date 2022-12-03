@@ -1,0 +1,23 @@
+.main_container{
+  width: var(--main-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 6.4rem;
+  padding-bottom: 6rem;
+}
+.content_container{
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+}
+.gamecards_container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 3.2rem;
+  row-gap: 4rem;
+}
+
