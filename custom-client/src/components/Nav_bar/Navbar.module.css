@@ -95,16 +95,17 @@
 }
 .btns_container{
   display: flex;
-  column-gap: 3.2rem;
+  flex-direction: column;
+  row-gap: 2.4rem;
   margin-top: 4rem;
 }
 .btns_container a, .btns_container .filter_menu_toggle{
-  height: 4.8rem;
+  height: 5rem;
 }
 .btns_container .filter_menu_toggle{
   width: 100%;
   padding: 0 2rem;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 /*--mobile---------------------------------*/
 /*----------------------------------------*/
