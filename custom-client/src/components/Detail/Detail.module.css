@@ -1,9 +1,9 @@
-.main_container{
+.main_container {
   --img-height: 36rem;
   margin: 0 auto;
   width: var(--main-width);
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "img desc"
     "data desc";
   grid-template-columns: repeat(2, 1fr);
@@ -12,25 +12,28 @@
   column-gap: 3.2rem;
   line-height: 1.6;
 }
-.img_container{
+.img_container {
   grid-area: img;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   height: var(--img-height);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border: 1px solid var(--ghost-white)
+  border: 1px solid var(--ghost-white);
 }
-.description_container{
+.description_container {
   grid-area: desc;
   height: 100%;
   text-align: left;
-  opacity: .8;
+  opacity: 0.8;
   overflow-y: scroll;
   scrollbar-width: thin;
   padding-right: 2rem;
 }
-.title_container{
+.description_container::-webkit-scrollbar {
+  display: none;
+}
+.title_container {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -41,12 +44,12 @@
   height: fit-content;
   border-bottom: 1px solid var(--ghost-white);
 }
-.title_container h1{
+.title_container h1 {
   font-size: 1.8rem;
   padding: 0;
   margin: 0;
 }
-.title_container a{
+.title_container a {
   min-width: 15rem;
   text-align: end;
   display: inline-block;
@@ -55,31 +58,31 @@
   cursor: pointer;
   font-family: var(--font-titles);
 }
-.extra_data_container{
+.extra_data_container {
   text-align: left;
-  opacity: .8;
+  opacity: 0.8;
   grid-area: data;
 }
-.extra_data_container ul{
+.extra_data_container ul {
   padding: 1.6rem;
 }
-.extra_data_container li{
+.extra_data_container li {
   list-style: square;
 }
-.extra_data_container li strong{
-  margin-right: .6rem;
+.extra_data_container li strong {
+  margin-right: 0.6rem;
 }
 @media (max-width: 1000px) {
-  .main_container{
+  .main_container {
     grid-template-areas: "img" "desc" "data";
     grid-template-columns: 100%;
     grid-template-rows: 50rem auto auto;
   }
-  .img_container{
+  .img_container {
     height: 50rem;
     border-bottom: 1px solid var(--ghost-white);
   }
-  .description_container{
+  .description_container {
     padding-top: 2rem;
     overflow: auto;
     padding-left: 0;
@@ -88,10 +91,10 @@
   }
 }
 @media (max-width: 650px) {
-  .main_container{
+  .main_container {
     grid-template-rows: 30rem auto auto;
   }
-  .img_container{
+  .img_container {
     height: 30rem;
   }
 }

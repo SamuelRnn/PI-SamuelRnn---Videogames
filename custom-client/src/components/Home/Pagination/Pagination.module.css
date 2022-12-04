@@ -36,3 +36,17 @@
   background-color: var(--purple);
   border: 2px solid var(--purple);
 }
+.mobile_container{
+  display: none;
+}
+@media (max-width: 479px) {
+  .desktop_container{
+    display: none;
+  }
+  .mobile_container{
+    display: flex;
+  }
+  .page_btn:not([title="move"]){
+    pointer-events: none;
+  }
+}

@@ -14,6 +14,101 @@
   display: flex;
   justify-content: space-between;
 }
+/*--mobile---------------------------------*/
+.mobile_navbar{
+  margin: 0 auto;
+  width: 95%;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar_trigger{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 6.4rem;
+  border: none;
+  background-color: transparent;
+}
+.sidebar_trigger svg{
+  color: var(--white);
+  height: 3.2rem;
+  width: 3.2rem;
+}
+.sidebar{
+  position: absolute;
+  top: 0;
+  right: -400px;
+  height: 100vh;
+  width: min(400px, 100%);
+  box-shadow: 0 0 10px 4px var(--black-bg);
+  border-left: 1px solid var(--ghost-white);
+  background-color: var(--black-bg);
+  transition: .4s ease-in-out transform;
+}
+.active_sidebar{
+  transform: translateX(-400px)
+}
+.close_sidebar{
+  position: absolute;
+  top: 0;
+  right: -1.8rem;
+  height: 7.2rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.close_sidebar svg{
+  stroke-width: 2px;
+  color: var(--white);
+  height: 3.2rem;
+  width: 3.2rem;
+}
+.sidebar_content{
+  position: relative;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 9rem;
+}
+.sidebar_content hr{
+  margin-top: 4rem;
+  border: none;
+  border-bottom: 1px solid var(--ghost-white);
+  margin-bottom: 0;
+}
+.sidebar_content a{
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ghost-white);
+}
+.sidebar_content a svg{
+  width: 2.4rem;
+}
+.btns_container{
+  display: flex;
+  column-gap: 3.2rem;
+  margin-top: 4rem;
+}
+.btns_container a, .btns_container .filter_menu_toggle{
+  height: 4.8rem;
+}
+.btns_container .filter_menu_toggle{
+  width: 100%;
+  padding: 0 2rem;
+  justify-content: space-around;
+}
+/*--mobile---------------------------------*/
+/*----------------------------------------*/
+
 .link_group{
   display: flex;
   align-items: center;
@@ -95,4 +190,26 @@ h2{
 }
 .active_btn::after{
   height: 0;
+}
+
+@media (max-width: 995px) {
+  .navbar{
+    display: none;
+  }
+  .mobile_navbar{
+    display: flex;
+  }
+  .active_link{
+    border: none;
+  }
+}
+@media (max-width: 584px) {
+  .mobile_navbar{
+    width: 90%;
+  }
+}
+@media (max-width: 319px) {
+  .title{
+    font-size: 1.6rem;
+  }
 }

@@ -23,15 +23,15 @@ const CreationForm = () => {
     "Android",
     "Steam Deck",
   ];
-
-  const [form, setForm] = useState({
+  const initialForm = {
     name: "",
     description: "",
     released: ["", "", ""],
     rating: "",
     genres: [],
     platforms: [],
-  });
+  }
+  const [form, setForm] = useState(initialForm);
   const [error, setError] = useState({
     name: false,
     description: false,
@@ -68,6 +68,7 @@ const CreationForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     const newDate = [form.released[0], form.released[1], form.released[2]];
+
     if (name === "day") {
       newDate[0] = value;
       return setForm((state) => ({ ...state, released: newDate }));
@@ -92,18 +93,25 @@ const CreationForm = () => {
   useEffect(() => {
     if(modal.status){
       window.sessionStorage.clear();
-      setForm({
-        name: "",
-        description: "",
-        released: ["", "", ""],
-        rating: "",
-        genres: [],
-        platforms: [],
-      });
+      setForm(initialForm);
     }
   }, [modal]);
-  //form validation -------------------------------
+  //form validation and form helpers-------------------------------
   useEffect(() => {
+    if(form.released[0].length !== 2 || form.released[1].length !== 2 || form.released[2].length !== 4){      
+      if(form.released[0].length === 2){
+        const month = document.getElementById('month');
+        month.focus();
+      }
+      if(form.released[1].length === 2){
+        const year = document.getElementById('year');
+        year.focus();
+      }
+    }
+
+    if(form.rating.length === 1) {
+      setForm(state => ({ ...state, rating: form.rating + '.' }) )
+    }
     setError(services.validateCreationForm(form));
   }, [form]);
 
@@ -158,6 +166,7 @@ const CreationForm = () => {
                     value={form.released[1]}
                     onChange={handleChange}
                     placeholder="month"
+                    id="month"
                     type="text"
                     name="month"
                     maxLength="2"
@@ -167,6 +176,7 @@ const CreationForm = () => {
                     value={form.released[2]}
                     onChange={handleChange}
                     placeholder="year"
+                    id="year"
                     type="text"
                     name="year"
                     maxLength="4"
@@ -176,16 +186,16 @@ const CreationForm = () => {
               </div>
 
               <div className={styles.rating_field}>
-                <label>rating (0.00)</label>
+                <label>rating (e.g. 4.38)</label>
                 <input
                   value={form.rating}
                   maxLength="4"
                   onChange={handleChange}
                   name="rating"
                   type="text"
-                  placeholder="1-5"
+                  placeholder="0.00"
                 />
-                {error.rating && <p>Invalid rating</p>}
+                {error.rating && <p>Invalid rating, use numbers only and use a valid format</p>}
               </div>
             </div>
 

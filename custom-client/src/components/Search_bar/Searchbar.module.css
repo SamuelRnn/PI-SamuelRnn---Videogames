@@ -7,7 +7,9 @@
   transition: .2s ease-in-out border;
 }
 .searchbar_container input{
-  width: 30rem;
+  /* width: max(100%, 30rem); */
+  width: 100%;
+  min-width: 30rem;
   padding: 0 1.6rem;
   background-color: transparent;
   border: none;
@@ -15,7 +17,11 @@
   opacity: .8;
   outline: none;
 }
-
+@media (max-width: 395px) {
+  .searchbar_container input{
+    min-width: calc(100% - 4rem);
+  } 
+}
 .searchbar_container:focus-within{
   border: 1px solid var(--purple);
 }

@@ -26,7 +26,11 @@ const Detail = ({ match }) => {
                 <h1>{info.name}</h1>
                 <a onClick={()=>history.push('/home')}>Return Home</a>
               </div>
-              <div dangerouslySetInnerHTML={{ __html: info.description || '<p>Not Specified</p>' }}></div>
+              {
+                !isNaN(id) ? 
+                <div dangerouslySetInnerHTML={{ __html: info.description || '<p>Not Specified</p>' }}></div> :
+                <p>{info.description}</p>
+              }
             </div>
             <div className={styles.extra_data_container}>
               <ul>
