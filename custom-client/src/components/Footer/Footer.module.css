@@ -1,0 +1,37 @@
+.wrapper{
+  background-color: var(--gray-light);
+  height: 20rem;
+}
+.content{
+  height: 100%;
+  width: var(--main-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.text{
+  text-align: start;
+  opacity: .7;
+}
+.text p{
+  font-size: 1.4rem;
+}
+
+.links_container{
+  display: flex;
+  column-gap: 1rem;
+}
+.links_container a{
+  color: var(--white);
+  opacity: .7;
+}
+.links_container a svg{
+  width: 4rem;
+  height: 4rem;
+}
+@media (max-width: 584px) {
+  .content{
+    width: 90%;
+  }
+}

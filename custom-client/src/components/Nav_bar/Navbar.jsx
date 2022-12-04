@@ -110,7 +110,11 @@ const Navbar = () => {
           </button>
           <Searchbar />
           <hr />
-          <NavLink to="/home" activeClassName={styles.active_link} onClick={() => setSidebarState(false)}>
+          <NavLink
+            to="/home"
+            activeClassName={styles.active_link}
+            onClick={() => setSidebarState(false)}
+          >
             <h2>Home</h2>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +126,11 @@ const Navbar = () => {
               <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
             </svg>
           </NavLink>
-          <NavLink to="/create" activeClassName={styles.active_link} onClick={() => setSidebarState(false)}>
+          <NavLink
+            to="/create"
+            activeClassName={styles.active_link}
+            onClick={() => setSidebarState(false)}
+          >
             <h2>Create your game!</h2>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +149,10 @@ const Navbar = () => {
           <div className={styles.btns_container}>
             {location.pathname === "/home" && (
               <button
-                onClick={() => dispatch(toggleFilterMenu())}
+                onClick={() => {
+                  dispatch(toggleFilterMenu());
+                  setSidebarState(false);
+                }}
                 className={`button ${styles.filter_menu_toggle} ${
                   filtersSelector.active ? styles.active_btn : null
                 }`}

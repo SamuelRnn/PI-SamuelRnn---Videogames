@@ -6,14 +6,14 @@ import Loading from "../Loading/Loading";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const fetchedGames = useSelector((state) => state.games)
+  const fetchedGames = useSelector((state) => state.games);
   useEffect(() => {
-    if(!fetchedGames){
+    if (!fetchedGames) {
       dispatch(getAllGames());
     }
   }, []);
 
-  return (fetchedGames ? <Results /> : <Loading/>)
+  return fetchedGames ? <Results /> : <Loading />;
 };
 
 export default Home;
