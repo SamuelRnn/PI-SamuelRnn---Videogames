@@ -1,5 +1,5 @@
 .main_container{
-  min-height: 100vh;
+  min-height: calc(100vh - 8rem);
   width: var(--main-width);
   display: flex;
   flex-direction: column;

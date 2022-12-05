@@ -5,7 +5,9 @@ const Gamecard = (props) => {
   const history = useHistory();
   const FALLBACK_IMG = 'https://assets.reedpopcdn.com/jetstreamsam.jpg/BROK/resize/1200x1200%3E/format/jpg/quality/70/jetstreamsam.jpg'
   return (
-    <div className={styles.container} onClick={()=>history.push(`/game/${props.id}`)}>
+    <div className={styles.container} onClick={()=>{
+      history.push(`/game/${props.id}`);
+    }}>
       <div
         className={styles.img_container}
         style={{ backgroundImage: `url(${props.background_image || FALLBACK_IMG})` }}

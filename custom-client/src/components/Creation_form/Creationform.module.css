@@ -21,8 +21,7 @@
   width: min(54rem, 95%);
   border-radius: .4rem 0 0 1rem;
   border: 1px solid var(--ghost-white);
-  background-color: var(--gray-light);
-  grid-column: 0 / 1;
+  background-color: var(--gray-dark);
   display: flex;
   flex-direction: column;
   row-gap: 2.4rem;
@@ -143,6 +142,6 @@
 }
 .submit:disabled{
   pointer-events: none;
-  background-color: var(--gray-dark);
+  background-color: var(--gray-light);
   color: var(--ghost-white);
 }

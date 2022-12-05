@@ -5,9 +5,13 @@ const postCustomGame = async (formToSend) => {
     status: false,
     message: 'Please, fill all fields correctly'
   }
+  if(isNaN(formToSend.rating) || formToSend.rating.length !== 4) return {
+    status: false,
+    message: 'Rating provided is not valid'
+  }
   if(isNaN(formToSend.released.join('')) || formToSend.released.join('').length !== 8) return {
     status: false,
-    message: 'Date is not valid'
+    message: 'Date provided is not valid'
   }
   if(formToSend.name.length > 52) return {
     status: false,

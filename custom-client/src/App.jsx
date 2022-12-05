@@ -13,6 +13,20 @@ import Footer from "./components/Footer/Footer";
 import axios from 'axios';
 axios.defaults.baseURL = import.meta.env.VITE_BACK_URL
 
+//scroll to top
+import { useLocation } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,6 +34,7 @@ const App = () => {
   }, []);
   return (
     <Router>
+      <ScrollToTop />
       <Route exact path="/" component={Landing} />
       <Route path="/" component={Navbar} />
       <Route exact path="/home" component={Home} />

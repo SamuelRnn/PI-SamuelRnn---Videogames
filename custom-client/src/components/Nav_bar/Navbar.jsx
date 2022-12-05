@@ -108,7 +108,7 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          <Searchbar />
+          <Searchbar setSidebarState={setSidebarState}/>
           <hr />
           <NavLink
             to="/home"
