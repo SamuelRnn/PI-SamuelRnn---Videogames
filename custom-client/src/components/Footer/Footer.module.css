@@ -13,9 +13,13 @@
 }
 .text{
   text-align: start;
-  opacity: .7;
+}
+.text h1{
+  color: var(--gray);
 }
 .text p{
+  margin-top: -.5rem;
+  color: var(--gray);
   font-size: 1.4rem;
 }
 
@@ -25,9 +29,9 @@
 }
 .links_container a{
   color: var(--white);
-  opacity: .7;
 }
 .links_container a svg{
+  color: var(--gray);
   width: 4rem;
   height: 4rem;
 }

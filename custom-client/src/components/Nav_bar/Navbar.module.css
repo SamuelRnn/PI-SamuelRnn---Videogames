@@ -3,9 +3,11 @@
   z-index: 2;
   width: 100%;
   background-color: var(--black-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   top: 0;
-  border-bottom: 1px solid var(--ghost-white);
-  box-shadow: 0 0 20px 10px var(--black-transparent);
+  /* border-bottom: 1px solid var(--ghost-white); */
+  box-shadow: 0 0 20px 16px var(--black-transparent);
 }
 .navbar{
   width: var(--main-width);

@@ -42,7 +42,7 @@ const Navbar = () => {
               </svg>
             </button>
           )}
-          <Searchbar />
+          <Searchbar setSidebarState={setSidebarState}/>
           <a
             href="https://github.com/SamuelRnn/PI-SamuelRnn---Videogames"
             className={styles.github_btn}
