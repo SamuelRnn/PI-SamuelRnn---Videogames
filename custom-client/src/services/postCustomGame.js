@@ -43,6 +43,7 @@ const postCustomGame = async (formToSend) => {
   } catch (error) {
     return error
   }
+  console.log(formToSend)
   try {
     const res = await axios.post("/videogames", formToSend);
     return res.data;
@@ -70,6 +71,6 @@ const postImg = async () => {
       message: res.data.error.message
     }
   }
-  return res.data.media
+  return res.data.data.media
 }
 export default postCustomGame;
