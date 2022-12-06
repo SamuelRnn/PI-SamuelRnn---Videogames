@@ -7,7 +7,7 @@
   -webkit-backdrop-filter: blur(20px);
   top: 0;
   /* border-bottom: 1px solid var(--ghost-white); */
-  box-shadow: 0 0 20px 16px var(--black-transparent);
+  box-shadow: 0 0 20px 8px var(--black-transparent);
 }
 .navbar{
   width: var(--main-width);

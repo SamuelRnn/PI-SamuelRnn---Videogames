@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const axios = require("axios").default;
 const { Op } = require("sequelize");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 
 const { API_KEY } = process.env;
 
@@ -19,6 +19,7 @@ const getGameBySearch = async (search) => {
         [Op.iLike]: `%${search}`,
       },
     },
+    include: Genre
   });
   if (!apiGames.results.length && !customGames.length) {
     throw {
