@@ -4,7 +4,7 @@ const getAllGenres = require('./getAllGenres');
 const postCustomVideogame = async (formData) => {
   //form default field_data = null
   const {
-    name, description, released, rating, genres, platforms
+    name, description, released, rating, genres, platforms, background_image
   } = formData
   if(!name || !description || !platforms){
     throw {
@@ -23,7 +23,7 @@ const postCustomVideogame = async (formData) => {
     }
   }
   const newGame = await Videogame.create({
-    name, description, released, rating, platforms
+    name, description, released, rating, platforms, background_image
   })
   const allGenres = await getAllGenres();
   const filteredGenres = genres.map(genre => (
