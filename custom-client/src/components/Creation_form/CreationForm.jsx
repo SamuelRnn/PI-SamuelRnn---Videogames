@@ -30,6 +30,7 @@ const CreationForm = () => {
     rating: "",
     genres: [],
     platforms: [],
+    background_image: "",
   }
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState({
@@ -66,9 +67,12 @@ const CreationForm = () => {
     }
   };
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
     const newDate = [form.released[0], form.released[1], form.released[2]];
 
+    if(name === "background_image"){
+      return setForm((state => ({ ...state, background_image: files[0].name })))
+    }
     if (name === "day") {
       newDate[0] = value;
       return setForm((state) => ({ ...state, released: newDate }));
@@ -83,12 +87,14 @@ const CreationForm = () => {
     }
     setForm((state) => ({ ...state, [name]: value }));
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     services.postCustomGame({...form})
       .then((res) => setModal({ ...res, active: true }))
     dispatch(resetGames());
   };
+
   //modal handle ----------------------------------
   useEffect(() => {
     if(modal.status){
@@ -195,7 +201,9 @@ const CreationForm = () => {
                   type="text"
                   placeholder="0.00"
                 />
-                {error.rating && <p>Invalid rating, use numbers only and use a valid format</p>}
+                {error.rating && (
+                  <p>Invalid rating, use numbers only and use a valid format</p>
+                )}
               </div>
             </div>
 
@@ -248,6 +256,14 @@ const CreationForm = () => {
                 </button>
               ))}
             </div>
+            <label>Select an image (optional)</label>
+            <input
+              type="file"
+              name="background_image"
+              id="bg_file"
+              onChange={handleChange}
+              accept=".jpg, .jpeg, .png, .webp"
+            />
             <button
               disabled={
                 error.name ||

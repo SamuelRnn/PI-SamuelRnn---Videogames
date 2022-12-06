@@ -25,7 +25,6 @@ const filterGames = (gamesArray, filters) => {
   if(filters.order === 'best-rated-first'){
     gamesArray = [...gamesArray].sort((a,b)=> b.rating - a.rating)
   }
-  //desactivar el filtro no genera ningun efecto
   return gamesArray
 
 };

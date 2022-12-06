@@ -32,7 +32,7 @@ const postCustomVideogame = async (formData) => {
   newGame.addGenres(filteredGenres)
   return {
     status: 'done',
-    message: "Nuevo juego añadido correctamente!",
+    message: "New game added successfully!",
     game: newGame
   }
 };
