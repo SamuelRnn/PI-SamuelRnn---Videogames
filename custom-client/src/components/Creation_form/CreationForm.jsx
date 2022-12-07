@@ -74,16 +74,22 @@ const CreationForm = () => {
       return setForm((state => ({ ...state, background_image: files[0].name })))
     }
     if (name === "day") {
+      if(value.length > 2) return
       newDate[0] = value;
       return setForm((state) => ({ ...state, released: newDate }));
     }
     if (name === "month") {
+      if(value.length > 2) return
       newDate[1] = value;
       return setForm((state) => ({ ...state, released: newDate }));
     }
     if (name === "year") {
+      if(value.length > 4) return
       newDate[2] = value;
       return setForm((state) => ({ ...state, released: newDate }));
+    }
+    if (name === 'rating') {
+      if(value.length > 4) return
     }
     setForm((state) => ({ ...state, [name]: value }));
   };
@@ -163,9 +169,8 @@ const CreationForm = () => {
                     value={form.released[0]}
                     onChange={handleChange}
                     placeholder="day"
-                    type="text"
+                    type="number"
                     name="day"
-                    maxLength="2"
                   />
 
                   <input
@@ -173,9 +178,8 @@ const CreationForm = () => {
                     onChange={handleChange}
                     placeholder="month"
                     id="month"
-                    type="text"
+                    type="number"
                     name="month"
-                    maxLength="2"
                   />
 
                   <input
@@ -183,9 +187,8 @@ const CreationForm = () => {
                     onChange={handleChange}
                     placeholder="year"
                     id="year"
-                    type="text"
+                    type="number"
                     name="year"
-                    maxLength="4"
                   />
                 </div>
                 {error.released && <p>Invalid Date</p>}
@@ -195,10 +198,9 @@ const CreationForm = () => {
                 <label>rating (e.g. 4.38)</label>
                 <input
                   value={form.rating}
-                  maxLength="4"
                   onChange={handleChange}
                   name="rating"
-                  type="text"
+                  type="number"
                   placeholder="0.00"
                 />
                 {error.rating && (

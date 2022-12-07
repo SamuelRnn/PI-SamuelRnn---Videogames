@@ -37,6 +37,7 @@
   border: 1px solid var(--ghost-white);
   color: var(--white);
   transition: .2s ease-in-out border-color;
+  appearance: textfield;
 }
 .form_container input[name="rating"]{
   width: 8rem;
@@ -63,6 +64,9 @@
 .date_container{
   display: flex;
   gap: 1rem;
+}
+.date_container input{
+
 }
 @media (max-width: 570px){
   .date_field, .rating_field{
