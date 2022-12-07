@@ -41,7 +41,12 @@
 }
 .form_container input[name="rating"]{
   width: 8rem;
+  padding-right: 0;
 }
+.form_container input[type='file']{
+  display: none;
+}
+
 .form_container form textarea{
   resize: none;
   height: 14.2rem;
@@ -64,9 +69,6 @@
 .date_container{
   display: flex;
   gap: 1rem;
-}
-.date_container input{
-
 }
 @media (max-width: 570px){
   .date_field, .rating_field{
@@ -100,7 +102,7 @@
   column-gap: 1rem;
   row-gap: .4rem;
 }
-.selection_container button{
+.selection_container button, .file_lbl{
   cursor: pointer;
   padding: .4rem 2rem;
   background: transparent;
@@ -110,7 +112,8 @@
   transition: .2s ease-in-out;
   transition-property:  border-color, background-color;
 }
-.selection_container button:hover{
+
+.selection_container button:hover, .file_lbl:hover{
   border-color: var(--purple);
 }
 .selection_container button[id="clear-all"]{
@@ -121,17 +124,11 @@
   background-color: var(--purple) !important;
   color: var(--white) !important;
 }
-/*----------------------------------------*/
-.img_container{
-  border-radius: 0 1rem 1rem 0;
-  height: 85%;
-  width: 100%;
-  background-image: url(../../../img.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 1px solid var(--ghost-white);
-  border-left: none;
+.form_container form .file_lbl{
+  display: flex;
+  height: 4rem;
 }
+
 /*----------------------------------------*/
 .form_container input:focus, .form_container textarea:focus{
   border-color: var(--purple);

@@ -258,7 +258,9 @@ const CreationForm = () => {
                 </button>
               ))}
             </div>
-            <label>Select an image (optional)</label>
+            <label className={styles.file_lbl} for="bg_file">
+              {form.background_image || 'Select an image (optional)'}
+            </label>
             <input
               type="file"
               name="background_image"
